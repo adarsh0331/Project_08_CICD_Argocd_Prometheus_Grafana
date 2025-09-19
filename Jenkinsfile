@@ -82,7 +82,7 @@ stage('Push image to ECR') {
                     git config user.name "adarsh"
                     BUILD_NUMBER=${BUILD_NUMBER}
                    #sed -i "s/mc:.*/mc:${BUILD_NUMBER}/g" deploymentfiles/deployment.yml
-					sed -i "s|image: .*|image: 526344317172.dkr.ecr.us-east-1.amazonaws.com/nodejs:$BUILD_NUMBER|" deploymentfiles/deployment.yaml
+					sed -i "s|image: .*|image: 526344317172.dkr.ecr.us-east-1.amazonaws.com/nodejs:$BUILD_NUMBER|" deploymentfiles/deployment.yml
                     git add .
                     
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
