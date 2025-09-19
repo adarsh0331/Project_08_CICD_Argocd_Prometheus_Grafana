@@ -59,8 +59,8 @@ stage('Push image to ECR') {
                   aws ecr get-login-password --region us-east-1 \
                   | sudo docker login --username AWS --password-stdin 526344317172.dkr.ecr.us-east-1.amazonaws.com
                   
-                  sudo docker tag adarshbarkunta/nodejs:10 526344317172.dkr.ecr.us-east-1.amazonaws.com/nodejs:10
-                  sudo docker push 526344317172.dkr.ecr.us-east-1.amazonaws.com/nodejs:10
+                  sudo docker tag adarshbarkunta/nodejs:${BUILD_NUMBER} 526344317172.dkr.ecr.us-east-1.amazonaws.com/nodejs:${BUILD_NUMBER}
+                  sudo docker push 526344317172.dkr.ecr.us-east-1.amazonaws.com/nodejs:${BUILD_NUMBER}
                 '''
             }
         }
