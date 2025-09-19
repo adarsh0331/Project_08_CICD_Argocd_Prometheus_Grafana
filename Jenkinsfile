@@ -66,7 +66,34 @@ stage('Push image to ECR') {
         }
     }
 }
+       stage('Update Deployment File') {
+		
+		 environment {
+            GIT_REPO_NAME = "Project_7"
+            GIT_USER_NAME = "adarsh0331"
+        }
+		
+            steps {
+                echo 'Update Deployment File'
+				withCredentials([string(credentialsId: 'githubtoken', variable: 'githubtoken')]) 
+				{
+                  sh '''
+                    git config user.email "adarsh@gmail.com"
+                    git config user.name "adarsh"
+                    BUILD_NUMBER=${BUILD_NUMBER}
+                   #sed -i "s/mc:.*/mc:${BUILD_NUMBER}/g" deploymentfiles/deployment.yml
+					sed -i "s|image: .*|image: 526344317172.dkr.ecr.us-east-1.amazonaws.com/nodejs:$BUILD_NUMBER|" deploymentfiles/deployment.yaml
+                    git add .
+                    
+                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
 
+                    git push https://${githubtoken}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                '''
+				  
+                 }
+				
+            }
+        }
 
   }
 }
