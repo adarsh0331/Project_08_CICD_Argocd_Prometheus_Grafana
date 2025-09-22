@@ -284,8 +284,10 @@ All tools are open-source except AWS services. Use latest stable versions unless
 The deployment process is GitOps-driven using ArgoCD:
 
 1. **Image Push**: Jenkins builds and pushes the Docker image to AWS ECR.
-2. **Manifest Update**: Jenkins updates `deployment.yaml` in GitHub with the new image tag.
+3. **Manifest Update**: Jenkins updates `deployment.yaml` in GitHub with the new image tag.
+   
    - Example `deployment.yaml`:
+     
      ```yaml
 ---
 apiVersion: apps/v1
