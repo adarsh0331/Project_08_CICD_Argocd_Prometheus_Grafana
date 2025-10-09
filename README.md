@@ -288,8 +288,8 @@ The deployment process is GitOps-driven using ArgoCD:
 3. **Manifest Update**: Jenkins updates `deployment.yaml` in GitHub with the new image tag.
    
    - Example `deployment.yaml`:
-     
-     ```yaml
+
+ ```yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -312,7 +312,7 @@ spec:
         image: 526344317172.dkr.ecr.us-east-1.amazonaws.com/nodejs:16
         ports:
         - containerPort: 3000
-     ```
+```
 3. **ArgoCD Sync**:
    - ArgoCD monitors the GitHub repo for changes.
    - Detects the updated `deployment.yaml` and triggers a sync.
